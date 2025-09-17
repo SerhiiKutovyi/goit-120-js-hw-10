@@ -14,8 +14,9 @@ const refs = {
 };
 
 let userSelectedDate = null;
-let isActive = false;
+
 refs.input.disabled = false;
+refs.start.disabled = false;
 
 const options = {
   enableTime: true,
@@ -25,7 +26,12 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] <= new Date()) {
       iziToast.show({
+        title: 'Error',
+        titleColor: 'rgb(255, 255, 255)',
         message: 'Please choose a date in the future',
+        messageColor: 'rgb(255, 255, 255)',
+        position: 'topRight',
+        color: 'rgb(239, 64, 64)',
       });
 
       return;
@@ -37,11 +43,7 @@ const options = {
 flatpickr(refs.input, options);
 
 refs.start.addEventListener('click', () => {
-  if (isActive) {
-    return;
-  }
-
-  isActive = true;
+  refs.start.disabled = true;
   refs.input.disabled = true;
 
   const timerId = setInterval(() => {
@@ -51,7 +53,8 @@ refs.start.addEventListener('click', () => {
     if (userTime <= 0) {
       clearInterval(timerId);
       refs.input.disabled = false;
-      isActive = false;
+      refs.start.disabled = false;
+
       return;
     }
 
