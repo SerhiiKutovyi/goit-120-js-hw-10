@@ -3,10 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Snackbar</title>
+    <script type="module" crossorigin src="/goit-120-js-hw-10/2-snackbar.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-120-js-hw-10/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="/goit-120-js-hw-10/assets/vendor-fyLdAcWF.js">
+    <link rel="stylesheet" crossorigin href="/goit-120-js-hw-10/assets/vendor-1Mt4gqrI.css">
+    <link rel="stylesheet" crossorigin href="/goit-120-js-hw-10/assets/main-BmFn5agQ.css">
   </head>
   <body>
-    <a class="back-link" href="../index.html"><<<<< Go back <<<<<</a>
+    <div class="container">
+      <a class="back-link" href="../index.html"><<<<< Go back <<<<<</a>
 
+
+      <form class="form">
+        <label class="form-label-delay">
+          Delay (ms)
+          <input class="form-input-delay" type="number" name="delay" required />
+        </label>
+
+        <fieldset class="form-fieldset">
+          <legend>State</legend>
+          <label>
+            <input type="radio" name="state" value="fulfilled" required />
+            Fulfilled
+          </label>
+          <label>
+            <input type="radio" name="state" value="rejected" required />
+            Rejected
+          </label>
+        </fieldset>
+
+        <button class="form-btn" type="submit">Create notification</button>
+      </form>
+    </div>
   </body>
 </html>
