@@ -16,12 +16,11 @@ const refs = {
 let userSelectedDate = null;
 
 refs.input.disabled = false;
-refs.start.disabled = false;
+refs.start.disabled = true;
 
 const options = {
   enableTime: true,
   time_24hr: true,
-  defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0] <= new Date()) {
@@ -33,17 +32,17 @@ const options = {
         position: 'topRight',
         color: 'rgb(239, 64, 64)',
       });
-
+      refs.start.disabled = true;
       return;
     }
     userSelectedDate = selectedDates[0];
+    refs.start.disabled = false;
   },
 };
 
 flatpickr(refs.input, options);
 
 refs.start.addEventListener('click', () => {
-  refs.start.disabled = true;
   refs.input.disabled = true;
 
   const timerId = setInterval(() => {
@@ -53,7 +52,7 @@ refs.start.addEventListener('click', () => {
     if (userTime <= 0) {
       clearInterval(timerId);
       refs.input.disabled = false;
-      refs.start.disabled = false;
+      refs.start.disabled = true;
 
       return;
     }
